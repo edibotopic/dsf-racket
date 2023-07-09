@@ -4,18 +4,20 @@
 
 (provide g o s w G O S W σ_h σ_v : @)
 
+(define r 20)
+
 ;; Primitive parts: g(as), o(il), s(olid), w(ater)
 (define g
-  (circle 20 "solid" "light gray"))
+  (circle r "solid" "light gray"))
 
 (define o
-  (circle 20 "solid" "medium yellow"))
+  (circle r "solid" "medium yellow"))
 
 (define s
-  (circle 20 "solid" "medium pink"))
+  (circle r "solid" "medium pink"))
 
 (define w
-  (circle 20 "solid" "light blue"))
+  (circle r "solid" "light blue"))
 
 ;; Primitive containers — used with include (@) operator
 (define G "dark gray")
@@ -35,7 +37,7 @@
   (apply above xs)
   )
 
-;; Mixing (represents a disconnected collection)
+;; Mixing (represents a disconnected collection) BUG: should take more than two args and recurse
 (define (: x y)
   (overlay/offset x -50 0 y))
 
