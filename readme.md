@@ -4,7 +4,7 @@ Drawing topological diagrams based on the Dispersed System Formalism
 (DSF).
 
 This repo contains a small Racket module `dsf.rkt` and
-accompanying slides written in Racket `dsf_slides.rkt`
+accompanying slides written in Racket `dsf_slides.rkt`.
 A blank `dsf_test.rkt` file with the dsf module
 imported and some commented out formulas is
 provided for testing the module.
@@ -37,15 +37,16 @@ capitalised versions of these symbols.
 In DSF, two discrete oil and gas phases included in water
 is written:
 
-$$(g + o) @ w$$
+$$(g \ + \ o) \ @ \ w$$
 
 Using `dsk.rkt` we instead write:
 
-$$(@ (: g o) W)$$
+$$(@ \ (: \ g \ o) \ W)$$
 
 This could be read:
 
 > disconnected set of gas and oil phases (inner parens)
+> 
 > included within a containing water phase (outer parens)
 
 When this code is run in DrRacket, or compiled
