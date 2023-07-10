@@ -1,6 +1,7 @@
 #lang slideshow
 
 (require "dsf.rkt")
+(require "dsf_tree.rkt")
 (require 2htdp/image)
 (require slideshow/code)
 
@@ -53,3 +54,15 @@
  #:title "Containers (nested)"
  (code (@ (@ w S) W))
  (@ (@ w S) W))
+
+(slide
+    #:title "Tree representation"
+    (t "Define the tree")
+    (code (define complex-tree
+            '(@ (: w o) s))))
+
+(slide
+    #:title "Tree representation"
+    (t "Draw the tree")
+    (code (draw-tree complex-tree))
+    (draw-tree '(@ (: w o) s)))

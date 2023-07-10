@@ -1,15 +1,21 @@
 # DSF in Racket
 
-Drawing topological diagrams based on the Dispersed System Formalism
+Draw topological diagrams based on the Dispersed System Formalism
 (DSF).
 
-This repo contains a small Racket module `dsf.rkt` and
-accompanying slides written in Racket `dsf_slides.rkt`.
-A blank `dsf_test.rkt` file with the dsf module
+This repo contains a small Racket module `dsf.rkt`
+containing definitions to draw a spatial representation given
+a valid DSF formula.
+Using `dsf_tree.rkt` binary tree representations of the 
+the formulas can also be drawn.
+A blank `dsf_test.rkt` file with the dsf modules
 imported and some commented out formulas is
 provided for testing the module.
+Accompanying slides written in Racket `dsf_slides.rkt`,
+and viewable as `out/dsf_slides.pdf`, include example
+code and drawings.
 
-The module is imported into a Racket project with:
+The main module is imported into a Racket project with:
 
 ```rkt
 ;; Assuming dsf.rkt is in the working directory
@@ -21,18 +27,38 @@ As an example, the formula for an emulsion (oil-in-water) can be written:
 ```rkt
 (@ (: o o) W))
 ```
-Entering this in the DrRacket REPL will generate a corresponding
+Entering this in a DrRacket REPL will generate a corresponding
 diagram.
 
-The image can be stored in a variable and saved as an image to the
-`out` directory:
+The diagram can be stored in a variable and saved as an image to the
+`out` directory as follows:
 
 ```rkt
 (define emulsion (@ (: o o) W))
 (save-image emulsion "out/emulsion.png")
 ```
 
-The slides explaining the module can be run with:
+To draw formulas as binary trees import the necessary module:
+
+```rkt
+;; Assuming dsf_tree.rkt is in the working directory
+(require "dsf_tree.rkt")
+```
+
+Define the DSF structure again, this time as a list:
+
+```rkt
+(define emulsionForTree '(@ (: o o) W))
+(draw-tree emulsionForTree)
+```
+
+To save the tree image you need to specify the export path:
+
+```rkt
+(save-tree complex-tree "out/complex-tree.png")
+```
+
+The slides explaining the module can be edited and recompiled with:
 
 ```bash
 slideshow dsf_slides.rkt
@@ -97,8 +123,8 @@ visual reasoning about these spatial systems.
 # Status
 
 Currently, this is mostly a plaything
-for toying with DSF that I made in
-an afternoon.
+for toying with DSF, which I made originally
+in a single afternoon.
 
 I chose Racket as it comes with a
 batteries-included set of drawing
