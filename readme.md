@@ -101,8 +101,7 @@ Now, entering the below code in the REPL will define a DSF formula and
 then render the diagram in a separate frame:
 
 ```rkt
-(define myStructure (@ (@ (σ_h 
-w o) S) W))
+(define myStructure (@ (@ (σ w o) S) W))
 
 (show-pict myStructure)
 ```
@@ -110,7 +109,7 @@ w o) S) W))
 It would be nice to live-update this image as you change the code but
 this is currently not implemented.
 
-# Available DSF Operators
+# Currently-available DSF Operators
 
 Note: the symbols are chosen largely to mimic those used in the DSF
 literature.
@@ -121,15 +120,17 @@ entities, aligning with the intuitive definition of mixture
 (i.e., if x and y are mixed in z this usually means that they are discrete
 with respect to each other while both being contained within z).
 
-1. Mixed together ($:$) — takes two DSF systems as
-   argument
-2. Connected horizontally ($σ_h$) — takes n systems as argument
-3. Connected vertically ($σ_v$) — takes n systems as argument
-4. Included within ($@$) — takes a system and a container as
-   arguments
+## Binary
 
-Operator (1) needs work as it should take n arguments and recurse
-better when applied multiple times.
+1. Mixed together (: x y)
+2. Connected with (σ x y): note, can orientate vertically with "v" as
+   third arg
+3. Included within (@ x Y): note, must take a container as second arg
+4. Overlapping with (& x y)
+
+## Ternary
+
+5. Mediately connected through (^ x y z)
 
 # Purpose
 
