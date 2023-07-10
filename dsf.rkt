@@ -4,7 +4,7 @@
 
 (provide g o s w G O S W σ & : @)
 
-(define r 20)
+(define r 40)
 
 ;; Colours
 (define gaseous_fg (make-color 1 1 1 200))
@@ -48,7 +48,7 @@
 ;; Mixing (represents a disconnected collection)
 (define (: x y)
   (define d (* r 2))
-  (define dpad (+ d 5))
+  (define dpad (* d 1.1))
   (overlay/align/offset "left" "middle" x dpad 0 y))
 
 ;; Overlapping
@@ -64,6 +64,6 @@
 (define (@ image color)
   (define w (image-width image))
   (define h (image-height image))
-  (define p 10)
+  (define p (/ r 2))
   (underlay (rectangle (+ w p) (+ h p) "solid" color) image)
   )
