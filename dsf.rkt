@@ -2,46 +2,65 @@
 
 (require 2htdp/image)
 
-(provide g o s w G O S W σ_h σ_v : @)
+(provide g o s w G O S W σ & : @)
 
 (define r 20)
 
+;; Colours
+(define gaseous_fg (make-color 1 1 1 200))
+(define gaseous_bg (make-color 1 1 1 150))
+(define oily_fg (make-color 220 220 0 200))
+(define oily_bg (make-color 250 250 0 150))
+(define solid_fg (make-color 160 0 0 200))
+(define solid_bg (make-color 120 0 0 150))
+(define watery_fg (make-color 0 0 220 200))
+(define watery_bg (make-color 0 0 250 150))
+
 ;; Primitive parts: g(as), o(il), s(olid), w(ater)
 (define g
-  (circle r "solid" "light gray"))
+  (circle r "solid" gaseous_fg))
 
 (define o
-  (circle r "solid" "medium yellow"))
+  (circle r "solid" oily_fg))
 
 (define s
-  (circle r "solid" "medium pink"))
+  (circle r "solid" solid_fg))
 
 (define w
-  (circle r "solid" "light blue"))
+  (circle r "solid" watery_fg))
 
 ;; Primitive containers — used with include (@) operator
-(define G "dark gray")
-(define O "dark yellow")
-(define S "dark pink")
-(define W "dark blue")
+(define G gaseous_bg)
+(define O oily_bg)
+(define S solid_bg)
+(define W watery_bg)
 
 ;; Operations
 
 ;; Connecting horizontally
-(define (σ_h . xs)
-  (apply beside xs)
+(define (σ x y [orient? "h"])
+  (cond [ (equal? orient? "h") (beside x y) ]
+        [ (equal? orient? "v") (above x y) ]
+        [else "Orientation can only be (h)orizontal or (v)ertical"]
+   )
   )
 
-;; Connecting vertically
-(define (σ_v . xs)
-  (apply above xs)
-  )
-
-;; Mixing (represents a disconnected collection) BUG: should take more than two args and recurse
+;; Mixing (represents a disconnected collection)
 (define (: x y)
-  (overlay/offset x -50 0 y))
+  (define d (* r 2))
+  (define dpad (+ d 5))
+  (overlay/align/offset "left" "middle" x dpad 0 y))
 
-;; Inclusion (takes any DSF system and bounds it in a containing phase)
+;; Overlapping
+(define (& x y)
+  (define rpad (+ r 5))
+  (overlay/align/offset "left" "middle" x rpad 0 y))
+
+;; Mediately connecting (x is connected to y through z)
+(define (^ x y z)
+  (& (: x y) z))
+
+;; Inclusion/parthood (takes any DSF system and bounds it in a containing phase)
 (define (@ image color)
   (define w (image-width image))
   (define h (image-height image))
