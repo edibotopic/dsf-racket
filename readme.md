@@ -15,7 +15,9 @@ Accompanying slides written in Racket `dsf_slides.rkt`,
 and viewable as `out/dsf_slides.pdf`, include example
 code and drawings.
 
-The main module is imported into a Racket project with:
+# Usage
+
+The main module is imported into a Racket project or REPL with:
 
 ```rkt
 ;; Assuming dsf.rkt is in the working directory
@@ -72,9 +74,55 @@ slideshow --pdf -o out/dsf_slides.pdf dsf_slides.rkt
 
 ```
 
-# Available Operations
+# Using with Terminal
 
-1. Mixed together ($:$) — takes two systems as argument
+If you do not use DrRacket and prefer
+using the terminal or (neo)vim you need
+to do a little bit more work to preview
+images as you test your code.
+
+Start a REPL in your terminal with:
+
+```bash
+racket
+```
+
+To draw some diagrams you will need `dsf.rkt` (and or
+`dsf_tree.rkt`) and to render them
+to a frame you will need `racket/gui/base` and `pict`.
+Require them in the REPL:
+
+```rkt
+(require "df.rkt")
+(require racket/gui/base pict)
+```
+
+Now, entering the below code in the REPL will define a DSF formula and
+then render the diagram in a separate frame:
+
+```rkt
+(define myStructure (@ (@ (σ_h 
+w o) S) W))
+
+(show-pict myStructure)
+```
+
+It would be nice to live-update this image as you change the code but
+this is currently not implemented.
+
+# Available DSF Operators
+
+Note: the symbols are chosen largely to mimic those used in the DSF
+literature.
+Instead of $+$ the colon symbol $:$ is used as the former is needed as a
+summing function in the module's implementation.
+Semiotically, I also like the colon as it signifies two discrete
+entities, aligning with the intuitive definition of mixture
+(i.e., if x and y are mixed in z this usually means that they are discrete
+with respect to each other while both being contained within z).
+
+1. Mixed together ($:$) — takes two DSF systems as
+   argument
 2. Connected horizontally ($σ_h$) — takes n systems as argument
 3. Connected vertically ($σ_v$) — takes n systems as argument
 4. Included within ($@$) — takes a system and a container as
