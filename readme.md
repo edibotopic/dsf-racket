@@ -52,10 +52,10 @@ Define the DSF structure again, this time as a list:
 (draw-tree emulsionForTree)
 ```
 
-To save the tree image you need to specify the export path:
+To save the tree image:
 
 ```rkt
-(save-tree complex-tree "out/complex-tree.png")
+(save-tree emulsionForTree "out/emulsionForTree.png")
 ```
 
 The slides explaining the module can be edited and recompiled with:
