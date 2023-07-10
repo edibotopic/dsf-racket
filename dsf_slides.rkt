@@ -19,9 +19,9 @@
 (slide
   #:title "Operations"
  (t "Superposition (σ)")
- (t "Subscript (h or v) indicates orientation")
- (code (σ_h w o s))
- (σ_h w o s))
+ (t "Subscript (optional 'h' or 'v') indicates orientation")
+ (code (σ w o))
+ (σ w o))
 
 (slide
   #:title "Operations"
@@ -54,6 +54,12 @@
  #:title "Containers (nested)"
  (code (@ (@ w S) W))
  (@ (@ w S) W))
+
+(slide
+ #:title "Operations (contd.)"
+ (t "Other operations include")
+ (t "overlap (& x y) and")
+ (t "mediate connection (^ x y z)") )
 
 (slide
     #:title "Tree representation"
