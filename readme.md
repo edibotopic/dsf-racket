@@ -90,6 +90,15 @@ slideshow --pdf -o docs/slides.pdf docs/slides.rkt
 
 ```
 
+# Using with Jupyter
+
+There is a [Jupyter kernel for Racket](https://github.com/rmculpepper/iracket) — IRacket — that can be used to run Racket code in a Jupyter notebook.
+
+If you have Jupyter and IRacket installed then DSF modules can be
+required as described previously and used to draw diagrams.
+
+An example notebook `dsf.ipynb` is in the `/nb/` filder and can be viewed directly on GitHub.
+
 # Using with Terminal
 
 If you do not use DrRacket and prefer
