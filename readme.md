@@ -3,25 +3,28 @@
 Draw topological diagrams based on the Dispersed System Formalism
 (DSF).
 
-This repo contains a small Racket module `dsf.rkt`
+This repo contains a small Racket module `dsf/base.rkt`
 containing definitions to draw a spatial representation given
 a valid DSF formula.
-Using `dsf_tree.rkt` binary tree representations of the 
+Using `dsf/tree.rkt` binary tree representations of the 
 the formulas can also be drawn.
-A blank `dsf_test.rkt` file with the dsf modules
-imported and some commented out formulas is
-provided for testing the module.
-Accompanying slides written in Racket `dsf_slides.rkt`,
-and viewable as `out/dsf_slides.pdf`, include example
+A blank `test.rkt` file with the dsf modules
+imported and some example code is
+provided in the root directory for testing the module.
+Accompanying slides written in Racket `docs/slides.rkt`,
+and viewable as `docs/slides.pdf`, include example
 code and drawings.
 
 # Usage
 
+Make sure you have `racket` and `git` installed.
+Copy this repo to your device with `git clone`.
+
 The main module is imported into a Racket project or REPL with:
 
 ```rkt
-;; Assuming dsf.rkt is in the working directory
-(require "dsf.rkt")
+;; Assuming dsf/base.rkt is in the working directory
+(require "dsf/base.rkt")
 ```
 
 As an example, the formula for an emulsion (oil-in-water) can be written:
@@ -29,7 +32,7 @@ As an example, the formula for an emulsion (oil-in-water) can be written:
 ```rkt
 (@ (: o o) W))
 ```
-Entering this in a DrRacket REPL will generate a corresponding
+Entering this in the DrRacket REPL will generate a corresponding
 diagram.
 
 The diagram can be stored in a variable and saved as an image to the
@@ -43,8 +46,9 @@ The diagram can be stored in a variable and saved as an image to the
 To draw formulas as binary trees import the necessary module:
 
 ```rkt
-;; Assuming dsf_tree.rkt is in the working directory
-(require "dsf_tree.rkt")
+;; Assuming dsf/tree.rkt is in the working directory
+;; NOTE: resolution of the image could be improved
+(require "dsf/tree.rkt")
 ```
 
 Define the DSF structure again, this time as a list:
@@ -60,17 +64,29 @@ To save the tree image:
 (save-tree emulsionForTree "out/emulsionForTree.png")
 ```
 
-The slides explaining the module can be edited and recompiled with:
+# Docs
+
+Currently the docs are just a set of slides written in racket.
+They are also a nice demo of how the dsf libraries can be used
+in a presentation to generate diagrams.
+
+The slides can be edited:
 
 ```bash
-slideshow dsf_slides.rkt
+vim docs/slides.rkt
 ```
 
-To compile them as a `.pdf` in
-the `out` directory run:
+...previewed:
 
 ```bash
-slideshow --pdf -o out/dsf_slides.pdf dsf_slides.rkt
+slideshow docs/slides.rkt
+```
+
+and compiled as a `.pdf` in
+the `docs` directory:
+
+```bash
+slideshow --pdf -o docs/slides.pdf docs/slides.rkt
 
 ```
 
@@ -87,13 +103,13 @@ Start a REPL in your terminal with:
 racket
 ```
 
-To draw some diagrams you will need `dsf.rkt` (and or
-`dsf_tree.rkt`) and to render them
+To draw some diagrams you will need `dsf/base.rkt` (and or
+`dsf/base.rkt`) and to render them
 to a frame you will need `racket/gui/base` and `pict`.
 Require them in the REPL:
 
 ```rkt
-(require "df.rkt")
+(require "dsf/base.rkt")
 (require racket/gui/base pict)
 ```
 
@@ -130,7 +146,8 @@ with respect to each other while both being contained within z).
 
 ## Ternary
 
-5. Mediately connected through (^ x y z)
+5. Mediately connected (^ x y z): note, this means x is
+   mediately-connected to y through z
 
 # Purpose
 
@@ -152,7 +169,7 @@ is written:
 
 $$(g \ + \ o) \ @ \ w$$
 
-Using `dsk.rkt` we instead write:
+Using `lib/dsf.rkt` we instead write:
 
 $$(@ \ (: \ g \ o) \ W)$$
 
