@@ -17,6 +17,8 @@ code and drawings.
 
 # Usage
 
+## Importing and Drawing
+
 Make sure you have `racket` and `git` installed.
 Copy this repo to your device with `git clone`.
 
@@ -35,13 +37,26 @@ As an example, the formula for an emulsion (oil-in-water) can be written:
 Entering this in the DrRacket REPL will generate a corresponding
 diagram.
 
-The diagram can be stored in a variable and saved as an image to the
-`out` directory as follows:
+## Saving Images
+
+Diagrams can be as an image to an
+`out` directory.
+
+First create a suitably-named directory to keep things organised.
+
+```bash
+mkdir out
+```
+
+Store a DSF structure in a variable and invoke `save-image` followed by
+the variable name and the filename.
 
 ```rkt
 (define emulsion (@ (: o o) W))
 (save-image emulsion "out/emulsion.png")
 ```
+
+## Tree Representations
 
 To draw formulas as binary trees import the necessary module:
 
@@ -51,46 +66,20 @@ To draw formulas as binary trees import the necessary module:
 (require "dsf/tree.rkt")
 ```
 
-Define the DSF structure again, this time as a list:
+Define a DSF structure **as a list**:
 
 ```rkt
 (define emulsionForTree '(@ (: o o) W))
 (draw-tree emulsionForTree)
 ```
 
-To save the tree image:
+To save the tree image run:
 
 ```rkt
 (save-tree emulsionForTree "out/emulsionForTree.png")
 ```
 
-# Docs
-
-Currently the docs are just a set of slides written in racket.
-They are also a nice demo of how the dsf libraries can be used
-in a presentation to generate diagrams.
-
-The slides can be edited:
-
-```bash
-vim docs/slides.rkt
-```
-
-...previewed:
-
-```bash
-slideshow docs/slides.rkt
-```
-
-and compiled as a `.pdf` in
-the `docs` directory:
-
-```bash
-slideshow --pdf -o docs/slides.pdf docs/slides.rkt
-
-```
-
-# Using with Jupyter
+## Jupyter Notebooks
 
 There is a [Jupyter kernel for Racket](https://github.com/rmculpepper/iracket) — IRacket — that can be used to run Racket code in a Jupyter notebook.
 
@@ -99,10 +88,10 @@ required as described previously and used to draw diagrams.
 
 An example notebook `dsf.ipynb` is in the `/nb/` folder and can be viewed directly on GitHub.
 
-# Using with Terminal
+# Terminal/Vim
 
 If you do not use DrRacket and prefer
-using the terminal or (neo)vim you need
+using the terminal or (Neo)Vim you need
 to do a little bit more work to preview
 images as you test your code.
 
@@ -194,6 +183,32 @@ representation of the structure it defines.
 
 This allows a tight-coupling between symbolic and
 visual reasoning about these spatial systems.
+
+# Docs
+
+Currently the docs are just a set of slides written in racket.
+They are also a nice demo of how the dsf libraries can be used
+in a presentation to generate diagrams.
+
+The slides can be edited:
+
+```bash
+vim docs/slides.rkt
+```
+
+...previewed:
+
+```bash
+slideshow docs/slides.rkt
+```
+
+and compiled as a `.pdf` in
+the `docs` directory:
+
+```bash
+slideshow --pdf -o docs/slides.pdf docs/slides.rkt
+
+```
 
 # Status
 
