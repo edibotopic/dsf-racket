@@ -7,10 +7,11 @@ This repo contains a small Racket module `dsf/base.rkt`
 containing definitions to draw a spatial representation given
 a valid DSF formula.
 Using `dsf/tree.rkt` binary tree representations of the 
-the formulas can also be drawn.
+formulas can also be drawn.
 A blank `test.rkt` file with the dsf modules
 imported and some example code is
 provided in the root directory for testing the module.
+An example of a Jupyter notebook `nb/dsf.ipynb` is also included.
 Accompanying slides written in Racket `docs/slides.rkt`,
 and viewable as `docs/slides.pdf`, include example
 code and drawings.
@@ -202,7 +203,7 @@ vim docs/slides.rkt
 slideshow docs/slides.rkt
 ```
 
-and compiled as a `.pdf` in
+...and compiled as a `.pdf` in
 the `docs` directory:
 
 ```bash
