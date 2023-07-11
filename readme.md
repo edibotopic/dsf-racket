@@ -160,9 +160,9 @@ The module defines four primitives — `g`, `o`, `w`, `s` —
 for the four phases gas, oil, water and solid.
 These primitives and their mixtures can also be 
 spatially included in containers, represented by
-capitalised versions of these symbols.
-The primitives are colored for distinction and their corresponding
-container has a darker shade.
+capitalised versions of these symbols (`G`, `O`,...).
+The primitives are shaded darker than their corresponding
+containers.
 
 In DSF, two discrete oil and gas phases included in water
 is written:
