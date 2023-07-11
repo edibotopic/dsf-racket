@@ -97,7 +97,7 @@ There is a [Jupyter kernel for Racket](https://github.com/rmculpepper/iracket) â
 If you have Jupyter and IRacket installed then DSF modules can be
 required as described previously and used to draw diagrams.
 
-An example notebook `dsf.ipynb` is in the `/nb/` filder and can be viewed directly on GitHub.
+An example notebook `dsf.ipynb` is in the `/nb/` folder and can be viewed directly on GitHub.
 
 # Using with Terminal
 
