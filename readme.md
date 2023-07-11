@@ -40,7 +40,7 @@ diagram.
 
 ## Saving Images
 
-Diagrams can be as an image to an
+Diagrams can be saved as an image to an
 `out` directory.
 
 First create a suitably-named directory to keep things organised.
@@ -86,6 +86,7 @@ There is a [Jupyter kernel for Racket](https://github.com/rmculpepper/iracket) â
 
 If you have Jupyter and IRacket installed then DSF modules can be
 required as described previously and used to draw diagrams.
+Make sure the kernel is set to Racket in your Jupyter instance.
 
 An example notebook `dsf.ipynb` is in the `/nb/` folder and can be viewed directly on GitHub.
 
