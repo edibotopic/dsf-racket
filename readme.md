@@ -6,7 +6,7 @@ Draw topological diagrams based on the Dispersed System Formalism
 This repo contains a small Racket module `dsf/base.rkt`
 containing definitions to draw a spatial representation given
 a valid DSF formula.
-Using `dsf/tree.rkt` binary tree representations of the 
+Using `dsf/tree.rkt` binary tree representations of the
 formulas can also be drawn.
 A blank `test.rkt` file with the dsf modules
 imported and some example code is
@@ -35,6 +35,7 @@ As an example, the formula for an emulsion (oil-in-water) can be written:
 ```rkt
 (@ (: o o) W))
 ```
+
 Entering this in the DrRacket REPL will generate a corresponding
 diagram.
 
@@ -90,7 +91,7 @@ Make sure the kernel is set to Racket in your Jupyter instance.
 
 An example notebook `dsf.ipynb` is in the `/nb/` folder and can be viewed directly on GitHub.
 
-# Terminal/Vim
+# Terminal/Vim/Emacs
 
 If you do not use DrRacket and prefer
 using the terminal or (Neo)Vim you need
@@ -125,6 +126,12 @@ then render the diagram in a separate frame:
 It would be nice to live-update this image as you change the code but
 this is currently not implemented.
 
+If using Emacs just install
+[Racket Mode](https://docs.racket-lang.org/guide/Emacs.html) 
+using a package manager.
+This facilitates an editing and REPL experience broadly
+similar to DrRacket (including image display).
+
 # Currently-available DSF Operators
 
 Note: the symbols are chosen largely to mimic those used in the DSF
@@ -138,33 +145,78 @@ with respect to each other while both being contained within z).
 
 ## Binary
 
-1. Mixed together (: x y)
-2. Connected with (σ x y): note, can orientate vertically with "v" as
+1. Mixed (: x y)
+2. Connected (σ x y): note, can orientate vertically with "v" as
    third arg
-3. Included within (@ x Y): note, must take a container as second arg
-4. Overlapping with (& x y)
+3. Enclosed (@ x Y): note, must take a container as second arg
+4. Overlapping (& x y)
 
 ## Ternary
 
 5. Mediately connected (^ x y z): note, this means x is
    mediately-connected to y through z
 
+## Aliases
+
+Aliases are provided for more explicit formula definitions.
+
+```rkt
+(equal? (mix oil gas) (: o g)) ;; #t
+```
+
+### Operators
+
+| Symbol |   Alias   |
+| :----: | :-------: |
+|   :    |   mixed   |
+|   σ    |  connect  |
+|   @    |  enclose  |
+|   &    |  overlap  |
+|   ^    | m-connect |
+
+### Primitives
+
+| Symbol | Alias |
+| :----: | :---: |
+|   g    |  gas  |
+|   o    |  oil  |
+|   s    | solid |
+|   w    | water |
+
+### Containers
+
+| Symbol | Alias |
+| :----: | :---: |
+|   G    |  Gas  |
+|   O    |  Oil  |
+|   S    | Solid |
+|   W    | Water |
+
+## Infix Notation
+
+Racket supports a (somewhat verbose) form of infix notation.
+This involves use of periods between an operation and its arguments:
+
+```rkt
+(equal? (mix o g) (o . mix . g)) ;; #t
+```
+
 # Purpose
 
-The module consists of helpful functions for drawing 
+The module consists of helpful functions for drawing
 diagrams according to the Dispersed System Formalism (DSF).
 These functions are effectively wrappers for drawing
 operations provided in the `2htdp/image` library.
 
 The module defines four primitives — `g`, `o`, `w`, `s` —
 for the four phases gas, oil, water and solid.
-These primitives and their mixtures can also be 
-spatially included in containers, represented by
+These primitives and their mixtures can also be
+spatially enclosed in containers, represented by
 capitalised versions of these symbols (`G`, `O`,...).
 The primitives are shaded darker than their corresponding
 containers.
 
-In DSF, two discrete oil and gas phases included in water
+In DSF, two discrete oil and gas phases enclosed in water
 is written:
 
 $$(g \ + \ o) \ @ \ w$$
@@ -176,8 +228,8 @@ $$(@ \ (: \ g \ o) \ W)$$
 This could be read:
 
 > disconnected set of gas and oil phases (inner parens)
-> 
-> included within a containing water phase (outer parens)
+>
+> enclosed within a containing water phase (outer parens)
 
 When this code is run in DrRacket, or compiled
 in a Racket slideshow it will output a diagrammatic
@@ -189,7 +241,7 @@ visual reasoning about these spatial systems.
 # Docs
 
 Currently the docs are just a set of slides written in racket.
-They are also a nice demo of how the dsf libraries can be used
+They are also a nice demo of how the DSF libraries can be used
 in a presentation to generate diagrams.
 
 The slides can be edited:
