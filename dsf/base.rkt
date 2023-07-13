@@ -6,8 +6,8 @@
  g o s w gas oil solid water ;; primitive phases start with lowercase letter
  G O S W Gas Oil Solid Water ;; container phases start with capital letter
  new-atom new-cont ;; helper functions for defining new primtives and containers
- σ : @ connect mix enclose ;; binary operators
- & overlap ;; ternary operator
+ σ : @ & connect mix enclose ;; binary operators
+ ^ overlap ;; ternary operator
  )
 
 (define r 40) ;; radius for use in function defs
