@@ -6,8 +6,8 @@
  g o s w gas oil solid water ;; primitive phases start with lowercase letter
  G O S W Gas Oil Solid Water ;; container phases start with capital letter
  new-atom new-cont ;; helper functions for defining new primtives and containers
- σ : @ & connect mix enclose ;; binary operators
- ^ overlap ;; ternary operator
+ σ : @ & connect mix enclose overlap ;; binary operators
+ ^ m-connect ;; ternary operator
  )
 
 (define r 40) ;; radius for use in function defs
@@ -60,9 +60,7 @@
 (define (σ x y [orient? "h"])
   (cond [ (equal? orient? "h") (beside x y) ]
         [ (equal? orient? "v") (above x y) ]
-        [else "Orientation can only be (h)orizontal or (v)ertical"]
-   )
-  )
+        [else "Orientation can only be (h)orizontal or (v)ertical"]))
 
 ;; Mixed
 ;; NOTE: "+" symbol used in original DSF papers
@@ -85,8 +83,7 @@
   (define w (image-width image))
   (define h (image-height image))
   (define p (/ r 2))
-  (underlay (rectangle (+ w p) (+ h p) default-style color) image)
-  )
+  (underlay (rectangle (+ w p) (+ h p) default-style color) image))
 
 ;; Mediately connected (x is connected to y through z)
 ;; NOTE: example of defining an operator using other operators
