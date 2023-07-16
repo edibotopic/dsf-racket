@@ -44,7 +44,8 @@ diagram.
 Diagrams can be saved as an image to an
 `out` directory.
 
-First create a suitably-named directory to keep things organised.
+First create a suitably-named directory to keep things organised (if
+it does not exist already).
 
 ```bash
 mkdir out
@@ -105,7 +106,7 @@ racket
 ```
 
 To draw some diagrams you will need `dsf/base.rkt` (and or
-`dsf/base.rkt`) and to render them
+`dsf/tree.rkt`) and to render them
 to a frame you will need `racket/gui/base` and `pict`.
 Require them in the REPL:
 
@@ -221,7 +222,7 @@ is written:
 
 $$(g \ + \ o) \ @ \ w$$
 
-Using `lib/dsf.rkt` we instead write:
+Using `dsf/base.rkt` we instead write:
 
 $$(@ \ (: \ g \ o) \ W)$$
 
